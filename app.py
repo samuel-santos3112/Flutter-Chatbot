@@ -10,5 +10,10 @@ def response():
     return jsonify({"response" : res})
 
 
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({"Message" : "Está funcionando"})   
+
+
 if __name__=="__main__":
     app.run(host="0.0.0.0",)

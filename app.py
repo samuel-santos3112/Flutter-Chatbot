@@ -1,14 +1,13 @@
-from flask import Flask, jsonify,request
+from flask import Flask, jsonify, request
 import time
 
 app = Flask(__name__)
 
 @app.route("/bot", methods=["POST"])
 def response():
-    data = request.json
-    query = dict(request.form)['query']
-    res = query + " " + time.ctime()
-    return jsonify({"response" : data})
+    message = request.form['query]
+    res = message + " " + time.ctime()
+    return jsonify({"response" : res})
 
 
 @app.route("/", methods=["GET"])

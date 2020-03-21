@@ -12,3 +12,9 @@ class Usuario(Base):
         self.nome = nome 
         self.senha = senha
 
+    def to_dict(self):
+        dic = {
+            'nome' : self.nome
+
+        }
+        return dic

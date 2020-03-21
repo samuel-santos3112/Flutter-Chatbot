@@ -16,7 +16,7 @@ def response():
 
 @app.route("/", methods=["GET"])
 def home():
-    return jsonify({"Message" : "Está funcionando"})
+    return jsonify({"Message" : "Está funcionando"}), 200
 
 @app.route('/criar_usuario' , methods = ['POST'])
 def criar_usuario():
@@ -25,9 +25,17 @@ def criar_usuario():
         usuario = Usuario(nome = data['nome'], senha = data['senha'])
         control.criar(usuario)
         flash('Criado com sucesso')
-        return jsonify({data['nome'] : " inserido com sucesso"})
+        return jsonify({data['nome'] : " inserido com sucesso"}), 200
     except Exception as e:
         return jsonify({'Erro ao inserir' : e})
+
+@app.route('/usuario', methods = ['GET'])
+def listar_usuario():
+    try:
+        usuarios = control.listar()
+        return jsonify(usuarios), 200
+    except Exception as e:
+        return jsonify({'Erro ao tentar listar' : e})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

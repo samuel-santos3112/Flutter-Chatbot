@@ -56,8 +56,14 @@ def listar():
     try:
         session = Session()
 
-        usuarios = session.query(Usuario).all()  
-        return usuarios
+        usuarios = session.query(Usuario).all()
+        usrs = []
+        for usuario in usuarios:
+            dic_usr = {
+                'nome' : usuario.nome
+            }
+            usrs.append(dic_usr)  
+        return usrs
     except Exception as e:
         print(e)
     finally:
